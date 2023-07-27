@@ -35,7 +35,11 @@ int main(int argc, char* argv[]){
 
   Matrix testMatrix1(2,3);
 
-  cout << "Element access:   " << testVector3[1];
+  testVector3[1] = 19.9;
+
+  cout << "\n\nElement access:   " << testVector3[1];
+
+  cout << "\n\nScalar product:" << testVector3*testVector3;
   cout <<"\n\n\n";
 
 }
