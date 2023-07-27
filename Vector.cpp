@@ -45,6 +45,10 @@ Vector Vector::operator+(Vector const otherVector){
   return sum;
 }
 
+double Vector::operator[](int index){
+  return Data[index];
+}
+
 
 
 void Vector::print(){

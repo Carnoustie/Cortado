@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Vector.hpp"
+#include "Matrix.hpp"
 
 using namespace std;
 
@@ -27,6 +28,14 @@ int main(int argc, char* argv[]){
   testSum.print();
 
 
+  cout << "\n\n\n\n\n";
+
+  double row1[3] = {2.2 , 3.3, 4.4};
+  double row2[3] = {9.9 , 6.6, 5.5};
+
+  Matrix testMatrix1(2,3);
+
+  cout << "Element access:   " << testVector3[1];
   cout <<"\n\n\n";
 
 }

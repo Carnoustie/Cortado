@@ -12,6 +12,7 @@ public:
   Vector operator+(Vector const otherVector);
   Vector operator-(Vector const otherVector);
   Vector operator*(Vector const otherVector);
+  double operator[](int index);
 
 
   void print();
