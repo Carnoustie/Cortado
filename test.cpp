@@ -40,6 +40,24 @@ int main(int argc, char* argv[]){
   cout << "\n\nElement access:   " << testVector3[1];
 
   cout << "\n\nScalar product:" << testVector3*testVector3;
+
+  for(int i = 0; i<2;i++){
+    for(int j = 0; j<3; j++){
+      testMatrix1(i,j) = 1.3;
+    }
+  }
+
+  cout << "\n\n[";
+
+  for(int i = 0; i<2;i++){
+    for(int j = 0; j<3; j++){
+      cout << " " << testMatrix1(i,j);
+    }
+    cout << "\n";
+  }
+  cout << "]";
+
+  cout << "\n\nGet row of matrix:\n\n" << testVector3[1];
   cout <<"\n\n\n";
 
 }
