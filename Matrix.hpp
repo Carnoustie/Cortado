@@ -1,19 +1,24 @@
+#include "Vector.hpp"
+
 using namespace std;
+
 
 class Matrix{
 
 public:
-  Matrix(int rows, int columns);
+  Matrix(int numRows, int numColumns);
   int size[2];
   int rows;
   int columns;
   Matrix operator+(Matrix const otherMatrix);
+  Matrix operator-(Matrix const otherMatrix);
   Matrix operator*(Matrix const otherMatrix);
-  // Matrix &operator=(int row, int column);
-  double &operator()(int row, int column);
-     // row);
-  // double &operator[](int column);
+  Vector operator*(Vector const x);
+  double &operator()(int row, int column) const;
 
+  void printMatrixInfo();
+  Matrix transpose();
+  void print();
 private:
   double** Data;
 };

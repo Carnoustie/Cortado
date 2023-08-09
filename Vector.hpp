@@ -15,7 +15,9 @@ public:
   Vector operator+(Vector const otherVector);
   Vector operator-(Vector const otherVector);
   double operator*(Vector const otherVector);
-  double &operator[](int const index);
+  double &operator[](int const index) const;
+  double &operator()(int const index) const;
+
 
   // void operator[]=(double const element);
 
@@ -24,6 +26,6 @@ public:
   double get(int index);
 
 private:
-  int dim;
+  int size;
   double* Data;
 };
