@@ -77,7 +77,7 @@ double Vector::get(int index){
 
 
 void Vector::print(){
-  cout << "[ " << Data[0];
+  cout << "\n\n\n\n\n\n[ " << Data[0];
   for(int i=1; i<size; i++){
     cout << " , " << Data[i];
   }

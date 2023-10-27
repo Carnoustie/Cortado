@@ -40,12 +40,15 @@ int main(int argc, char* argv[]){
 
   Matrix At = A.transpose();
   Matrix matrixProduct = A*At;
-  // A.print();
-  // At.print();
-  // matrixProduct.print();
+
+  cout << "\n\n\nA:\n\n\n";
+  A.print();
+  cout << "\n\n\nTranspose of A:\n\n\n";
+  At.print();
+  matrixProduct.print();
   matrix_vector_product.print();
 
-  C.print();
+  // C.print();
 
   cout <<"\n\n\n";
 

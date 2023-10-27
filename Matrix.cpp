@@ -5,6 +5,8 @@
 
 using namespace std;
 
+
+//Contructor
 Matrix::Matrix(int numRows, int numColumns){
   rows = numRows;
   columns = numColumns;
@@ -14,6 +16,7 @@ Matrix::Matrix(int numRows, int numColumns){
   }
 }
 
+//Addition
 Matrix Matrix::operator+(Matrix const otherMatrix){
   //assert here
   Matrix sum(rows,columns);
@@ -25,7 +28,7 @@ Matrix Matrix::operator+(Matrix const otherMatrix){
   return sum;
 }
 
-
+//Subtraction
 Matrix Matrix::operator-(Matrix const otherMatrix){
   //assert here
   Matrix difference(rows,columns);
@@ -39,7 +42,7 @@ Matrix Matrix::operator-(Matrix const otherMatrix){
 
 
 
-
+//Matrix-Matrix Multiplication
 Matrix Matrix::operator*(Matrix const M){
   Matrix matrixProduct(rows, M.columns);
   for(int i=0; i<rows; i++){
@@ -55,6 +58,7 @@ Matrix Matrix::operator*(Matrix const M){
   return matrixProduct;
 }
 
+//Matrix-Vector Multiplication
 Vector Matrix::operator*(Vector const x){
   Vector product(rows);
   double productElement;
@@ -68,12 +72,13 @@ Vector Matrix::operator*(Vector const x){
   return product;
 }
 
-
+//Element Access
 double &Matrix::operator()(int row, int column) const{
   return Data[row][column];
 }
 
 
+//Transpose
 Matrix Matrix::transpose(){
   Matrix transposed(columns, rows);
   for(int i=0; i<columns; i++){
@@ -86,9 +91,15 @@ Matrix Matrix::transpose(){
 
 
 
+// Vector Matrix::solve(Vector b){
+//
+// }
+
+
+
 
 void Matrix::print(){
-  cout << "\n\n";
+  cout << "\n\n\n";
   for(int i=0; i<rows; i++){
     cout << "[ ";
     for(int j=0; j<columns; j++){

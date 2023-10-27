@@ -16,6 +16,8 @@ public:
   Vector operator*(Vector const x);
   double &operator()(int row, int column) const;
 
+  Vector solve(Vector const b);
+  Vector eigenValues(Matrix const A);
   void printMatrixInfo();
   Matrix transpose();
   void print();
