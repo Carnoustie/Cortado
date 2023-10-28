@@ -1,45 +1,65 @@
 #include <iostream>
-#include "Vector.hpp"
+// #include "Vector.hpp"
 #include "Matrix.hpp"
+#include "math.h"
 
 using namespace std;
 
 int main(int argc, char* argv[]){
-  cout << "\n\n\nTesting Class Vector\n\n";
 
-  double testContent[2] = {3.0 , 4.0};
+  cout << "\n\n\n" << "testing of Matrix and Vector Modules\n\n\n";
+  Matrix A(2,3);
+  Matrix B(2,3);
+  Matrix D(3,3);
 
-  Vector testVector1();
-  Vector testVector2(2);
-  Vector testVector3(2,testContent);
+  D(0,0) = 3.44;  D(0,1) = 6.88;  D(0,2) = 15.48;  D(1,0) = 17.2;  D(1,1) = 3.44;  D(1,2) = 4.644;  D(2,0) = -172.0;  D(2,1) = 49.88;  D(2,2) = 5.332; 
 
-  Vector testSum = testVector3+testVector3;
+  Vector v(3);
+  v(0) = 1.1;
+  v(1) = 2.1;
+  v(2) = 3.1;
 
-  cout << "\n\nNorm of the test Vector(Should be five):\n\n" << testVector3.norm();
 
-  cout << "\n\nTest addition operator:\n\n";
-  cout << "[";
-  for(int k=0; k<2; k++){
-    cout << " " << testSum.get(k);
+
+
+
+
+  for(int i=0; i<A.rows; i++){
+    for(int j=0;j<A.columns; j++){
+      A(i,j) = exp(i+j);
+    }
   }
-  cout << " ]";
-
-  cout << "\n\n\n\n";
-  testSum.print();
 
 
-  cout << "\n\n\n\n\n";
 
-  double row1[3] = {2.2 , 3.3, 4.4};
-  double row2[3] = {9.9 , 6.6, 5.5};
+  for(int i=0; i<A.rows; i++){
+    for(int j=0;j<A.columns; j++){
+      B(i,j) = exp(i+j+2);
+    }
+  }
 
-  Matrix testMatrix1(2,3);
+  Matrix C = B-A;
 
-  testVector3[1] = 19.9;
+  Vector matrix_vector_product = A*v;
 
-  cout << "\n\nElement access:   " << testVector3[1];
 
-  cout << "\n\nScalar product:" << testVector3*testVector3;
+  Matrix At = A.transpose();
+  Matrix matrixProduct = A*At;
+
+  cout << "\n\n\nA:\n\n\n";
+  A.print();
+  cout << "\n\n\nTranspose of A:\n\n\n";
+  At.print();
+  matrixProduct.print();
+  matrix_vector_product.print();
+
+  double det = D.determinant();
+  cout << "\n\n\n Test determinant: " << det << "  for the following matrix:\n";
+
+  D.print();
+
+  // C.print();
+
   cout <<"\n\n\n";
 
 }
