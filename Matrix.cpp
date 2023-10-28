@@ -78,6 +78,8 @@ double &Matrix::operator()(int row, int column) const{
 }
 
 
+
+
 //Transpose
 Matrix Matrix::transpose(){
   Matrix transposed(columns, rows);
@@ -89,9 +91,31 @@ Matrix Matrix::transpose(){
   return transposed;
 }
 
+double Matrix::determinant(){
+  // cout << "\n\n\nSubmatrix:";
+  print();
+  if(rows==2 && columns==2){
+    return Data[0][0]*Data[1][1] - Data[0][1]*Data[1][0];
+  }
+  double sum=0.0;
+    for(int i=0; i<columns; i++){
+      double k = Data[0][i]*(pow(-1,i));
+      // cout << "\n\n\nk:" << k;
+      Matrix minorMatrix(columns-1,rows-1);
+      for(int j=0;j<columns-1;j++){
+        for(int u=0;u<rows-1;u++){
+          int skip = (int) j>=i;
+          minorMatrix.Data[u][j] = Data[u+1][j+skip];
+        }
+      }
+      sum+=k*minorMatrix.determinant();
+    }
+    return sum;
+  }
 
 
 // Vector Matrix::solve(Vector b){
+//   assert(rows==columns); //Solver only for square matrices for now
 //
 // }
 
@@ -101,11 +125,11 @@ Matrix Matrix::transpose(){
 void Matrix::print(){
   cout << "\n\n\n";
   for(int i=0; i<rows; i++){
-    cout << "[ ";
+    cout << "[";
     for(int j=0; j<columns; j++){
     cout << "    " << Data[i][j] ;
   }
-  cout << "  ]\n\n";
+  cout << "   ]\n\n";
 }
   return;
 }

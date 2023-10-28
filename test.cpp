@@ -10,6 +10,9 @@ int main(int argc, char* argv[]){
   cout << "\n\n\n" << "testing of Matrix and Vector Modules\n\n\n";
   Matrix A(2,3);
   Matrix B(2,3);
+  Matrix D(3,3);
+
+  D(0,0) = 3.44;  D(0,1) = 6.88;  D(0,2) = 15.48;  D(1,0) = 17.2;  D(1,1) = 3.44;  D(1,2) = 4.644;  D(2,0) = -172.0;  D(2,1) = 49.88;  D(2,2) = 5.332; 
 
   Vector v(3);
   v(0) = 1.1;
@@ -26,6 +29,8 @@ int main(int argc, char* argv[]){
       A(i,j) = exp(i+j);
     }
   }
+
+
 
   for(int i=0; i<A.rows; i++){
     for(int j=0;j<A.columns; j++){
@@ -47,6 +52,11 @@ int main(int argc, char* argv[]){
   At.print();
   matrixProduct.print();
   matrix_vector_product.print();
+
+  double det = D.determinant();
+  cout << "\n\n\n Test determinant: " << det << "  for the following matrix:\n";
+
+  D.print();
 
   // C.print();
 
