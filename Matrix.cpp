@@ -114,10 +114,17 @@ double Matrix::determinant(){
   }
 
 
-// Vector Matrix::solve(Vector b){
-//   assert(rows==columns); //Solver only for square matrices for now
-//
-// }
+
+
+Vector Matrix::solve(Vector b){
+  assert(rows==columns); //Solver only for square matrices for now
+  double det = abs((*this).determinant());
+  assert(rows==columns && det >= 0.00001); //Solver only for square matrices for now
+
+  Matrix tempMatrix = *this;
+
+  return b;
+}
 
 
 
