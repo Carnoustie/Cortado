@@ -16,6 +16,8 @@ Matrix::Matrix(int numRows, int numColumns){
   }
 }
 
+
+
 //Addition
 Matrix Matrix::operator+(Matrix const otherMatrix){
   //assert here
@@ -114,10 +116,107 @@ double Matrix::determinant(){
   }
 
 
-// Vector Matrix::solve(Vector b){
-//   assert(rows==columns); //Solver only for square matrices for now
-//
+
+
+void Matrix::swapRows(int row1, int row2, int width){
+  double temp;
+
+  for(int k=0; k<width; k++){
+    temp = Data[row1][k];
+    Data[row1][k] = Data[row2][k];
+    Data[row2][k] = temp;
+  }
+
+}
+
+void Matrix::swapColumns(int col1, int col2, int height){
+  double temp;
+
+  for(int k=0; k<height; k++){
+    temp = Data[k][col1];
+    Data[k][col1] = Data[k][col2];
+    Data[k][col2] = temp;
+  }
+
+}
+
+void Matrix::LU_Decomposition(Matrix* L, Matrix* U, int n){
+  double l;
+  double a1;
+  double a2;
+
+  U = this;
+  cout << "\n\n\nprints1: \n\n\n";
+  (*U).print();
+  for(int k=0; k<n-1;k++){
+    (*L)(k,k) = 1;
+    for(int i = k+1; i<n; i++){
+      a2 = (*U)(k,k);
+      a1 = (*U)(i,k);
+      l = a1/a2;
+      for(int q=k; q<n; q++){
+        (*U)(i,q) = (*U)(i,q) - l*((*U)(k,q));
+      }
+      (*L)(i,k) = l;
+    }
+  }
+  (*L)(n-1,n-1) = 1;
+
+  // cout<< "\n\n\nprints:\n\n\n";
+  // (*L).print();
+  // cout << "\n\n\n";
+  // (*U).print();
+
+}
+
+
+
+
+//   if(Data[0][0]==0){
+//     for(int k=0; k<rows; k++){
+//       if(Data[k][0]!=0){
+//         tempMatrix.swapRows(0,k,columns);
+//         double t = b[0];
+//         b[0] = b[k];
+//         b[k] = t;
+//         break;
+//       }
+//     }
+//   }
 // }
+
+
+
+Vector Matrix::solve(Vector b){
+  assert(rows==columns); //Solver only for square matrices for now
+  double det = abs((*this).determinant());
+  assert(rows==columns && det >= 0.00001); //Solver only for square matrices for now
+
+
+
+  Matrix tempMatrix = *this;
+  int n = columns;
+
+  // cout << "\n\n\nunswapped:\n\n\n";
+  // tempMatrix.print();
+
+  //ensure upper-leftmost elemnt is nonzero
+  int k=0;
+  if(Data[0][0]==0){
+    for(int k=0; k<rows; k++){
+      if(Data[k][0]!=0){
+        tempMatrix.swapRows(0,k,columns);
+        double t = b[0];
+        b[0] = b[k];
+        b[k] = t;
+        break;
+      }
+    }
+  }
+  // cout << "\n\n\nswapped:\n\n\n";
+  // tempMatrix.print();
+  return b;
+}
 
 
 

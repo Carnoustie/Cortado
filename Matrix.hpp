@@ -10,6 +10,7 @@ public:
   int size[2];
   int rows;
   int columns;
+
   Matrix operator+(Matrix const otherMatrix); // Addition
   Matrix operator-(Matrix const otherMatrix); // Subtraction
   Matrix operator*(Matrix const otherMatrix); //Matrix-Matrix Multiplication
@@ -21,6 +22,10 @@ public:
   void printMatrixInfo();
   Matrix transpose();
   double determinant();
+  void swapRows(int row1, int row2, int width);
+  void swapColumns(int col1, int col2, int height);
+
+  void LU_Decomposition(Matrix* L, Matrix* U, int n);
 
   void print();
 private:
