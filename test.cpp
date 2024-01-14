@@ -65,21 +65,28 @@ int main(int argc, char* argv[]){
   cout << "\n\n\n Test determinant: " << det << "  for the following matrix:\n";
 
 
-  D.print();
 
   int n = D.columns;
 
   Matrix L(n,n);
   Matrix U(n,n);
-  cout << "\n\n\n\n\n\nD: ";
+  cout << "\n\n\n\n\n\nD before: ";
   D.print();
-  D.LU_Decomposition(&L,&U,D.columns);
+  D.LU_Decomposition(&L,&U,n);
 
-  cout << "\n\n\n" << D(0,1);
-
-  Matrix P = L*D;
+  Matrix P = L*U;
   cout << "\n\n\n\n\n\nP: ";
   P.print();
+
+  cout << "\n\n\n\n\n\nD after: ";
+  D.print();
+
+  cout << "\n\n\n\n\n\nL after: ";
+  L.print();
+
+  cout << "\n\n\n\n\n\nU after: ";
+  U.print();
+
   // cout << "\n\n\n";
   // L.print();
   // cout << "\n\n\n";

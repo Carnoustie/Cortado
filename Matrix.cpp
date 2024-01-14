@@ -18,6 +18,15 @@ Matrix::Matrix(int numRows, int numColumns){
 
 
 
+//Contructor for deep copy
+Matrix::Matrix(const Matrix& A){
+  rows = A.rows;
+  columns = A.columns;
+  Data = A.Data;
+}
+
+
+
 //Addition
 Matrix Matrix::operator+(Matrix const otherMatrix){
   //assert here
@@ -81,6 +90,15 @@ double &Matrix::operator()(int row, int column) const{
 
 
 
+Matrix& Matrix::operator=(const Matrix original){
+  columns = original.columns;
+  rows = original.rows;
+  Data = original.Data;
+  return *this;
+};
+
+
+
 
 //Transpose
 Matrix Matrix::transpose(){
@@ -137,18 +155,29 @@ void Matrix::swapColumns(int col1, int col2, int height){
     Data[k][col1] = Data[k][col2];
     Data[k][col2] = temp;
   }
-
 }
+
+
+// Matrix Matrix::copy(const Matrix A){
+//   Matrix
+// }
+
 
 void Matrix::LU_Decomposition(Matrix* L, Matrix* U, int n){
   double l;
   double a1;
   double a2;
 
-  U = this;
-  cout << "\n\n\nprints1: \n\n\n";
-  (*U).print();
-  for(int k=0; k<n-1;k++){
+
+  //for loops neccessary for deep copying to new memory
+  for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+          (*U)(i, j) = (*this)(i, j);
+      }
+  }
+
+  
+  for(int k=0; k<n;k++){
     (*L)(k,k) = 1;
     for(int i = k+1; i<n; i++){
       a2 = (*U)(k,k);
@@ -161,12 +190,6 @@ void Matrix::LU_Decomposition(Matrix* L, Matrix* U, int n){
     }
   }
   (*L)(n-1,n-1) = 1;
-
-  // cout<< "\n\n\nprints:\n\n\n";
-  // (*L).print();
-  // cout << "\n\n\n";
-  // (*U).print();
-
 }
 
 
