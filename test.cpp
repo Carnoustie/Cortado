@@ -64,10 +64,27 @@ int main(int argc, char* argv[]){
   double det = D.determinant();
   cout << "\n\n\n Test determinant: " << det << "  for the following matrix:\n";
 
+
   D.print();
 
-  // C.print();
+  int n = D.columns;
 
-  cout <<"\n\n\n";
+  Matrix L(n,n);
+  Matrix U(n,n);
+  cout << "\n\n\n\n\n\nD: ";
+  D.print();
+  D.LU_Decomposition(&L,&U,D.columns);
+
+  cout << "\n\n\n" << D(0,1);
+
+  Matrix P = L*D;
+  cout << "\n\n\n\n\n\nP: ";
+  P.print();
+  // cout << "\n\n\n";
+  // L.print();
+  // cout << "\n\n\n";
+  // U.print();
+
+  // D.solve(v);
 
 }
