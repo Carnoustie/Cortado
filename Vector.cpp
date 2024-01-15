@@ -18,7 +18,7 @@ Vector::Vector(int numElems){
 
 // Constructor3
 Vector::Vector(int numElems, double* content){
-  size = size;
+  size = numElems;
   Data = new double[size];
   for(int i=0; i<size; i++){
     Data[i] = content[i];

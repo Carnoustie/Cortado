@@ -176,7 +176,7 @@ void Matrix::LU_Decomposition(Matrix* L, Matrix* U, int n){
       }
   }
 
-  
+
   for(int k=0; k<n;k++){
     (*L)(k,k) = 1;
     for(int i = k+1; i<n; i++){
@@ -194,51 +194,47 @@ void Matrix::LU_Decomposition(Matrix* L, Matrix* U, int n){
 
 
 
-
-//   if(Data[0][0]==0){
-//     for(int k=0; k<rows; k++){
-//       if(Data[k][0]!=0){
-//         tempMatrix.swapRows(0,k,columns);
-//         double t = b[0];
-//         b[0] = b[k];
-//         b[k] = t;
-//         break;
-//       }
-//     }
-//   }
-// }
+Vector Matrix::getRow(int k){
+  assert(k<rows);
+  Vector row(columns);
+  for(int i=0; i<columns;i++){
+    row(i) = Data[k][i];
+  }
+  return row;
+}
 
 
 
 Vector Matrix::solve(Vector b){
   assert(rows==columns); //Solver only for square matrices for now
   double det = abs((*this).determinant());
-  assert(rows==columns && det >= 0.00001); //Solver only for square matrices for now
-
-
-
-  Matrix tempMatrix = *this;
+  assert(rows==columns && det >= 0.00001); //Solver only for square and invertible matrices for now
+  int s = columns;
+  Matrix L(s,s);
+  Matrix U(s,s);
   int n = columns;
+  LU_Decomposition(&L,&U,s);
+  //
 
-  // cout << "\n\n\nunswapped:\n\n\n";
-  // tempMatrix.print();
 
-  //ensure upper-leftmost elemnt is nonzero
-  int k=0;
-  if(Data[0][0]==0){
-    for(int k=0; k<rows; k++){
-      if(Data[k][0]!=0){
-        tempMatrix.swapRows(0,k,columns);
-        double t = b[0];
-        b[0] = b[k];
-        b[k] = t;
-        break;
-      }
-    }
+  Vector currentRow;
+  double zeros[3] =  {0,0,0};
+  Vector y(s, zeros);
+
+  //solve L(Ux) <=>  L(y) =  b here, where y:= Ux
+  for(int k=0; k<n; k++){
+    currentRow = L.getRow(k);
+    y(k) = b[k] - currentRow*y;
   }
-  // cout << "\n\n\nswapped:\n\n\n";
-  // tempMatrix.print();
-  return b;
+
+
+  //solving Ux = y below
+  Vector x(s,zeros);
+  for(int k=n-1; k>=0; k--){
+    currentRow = U.getRow(k);
+    x(k) = (y[k] - currentRow*x)/ U(k,k);
+  }
+  return x;
 }
 
 

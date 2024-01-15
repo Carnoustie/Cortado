@@ -31,6 +31,7 @@ public:
   Matrix copy(Matrix A);
 
   void LU_Decomposition(Matrix* L, Matrix* U, int n);
+  Vector getRow(int k);
 
   void print();
 private:

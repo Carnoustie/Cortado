@@ -54,7 +54,6 @@ int main(int argc, char* argv[]){
   // cout << "\n\n\nD:\n\n\n";
   // D.print();
 
-  Vector u = D.solve(v);
 
   cout << "\n\n\nTranspose of A:\n\n\n";
   At.print();
@@ -86,6 +85,11 @@ int main(int argc, char* argv[]){
 
   cout << "\n\n\n\n\n\nU after: ";
   U.print();
+
+
+  Vector solution = D.solve(v);
+  cout << "\n\n\nSolution:";
+  solution.print();
 
   // cout << "\n\n\n";
   // L.print();
