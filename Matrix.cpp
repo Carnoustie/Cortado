@@ -17,16 +17,6 @@ Matrix::Matrix(int numRows, int numColumns){
 }
 
 
-
-//Contructor for deep copy
-Matrix::Matrix(const Matrix& A){
-  rows = A.rows;
-  columns = A.columns;
-  Data = A.Data;
-}
-
-
-
 //Addition
 Matrix Matrix::operator+(Matrix const otherMatrix){
   //assert here

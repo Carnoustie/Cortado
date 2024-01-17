@@ -51,8 +51,6 @@ int main(int argc, char* argv[]){
   Matrix copy = A;
   cout << "\n\n\nA:\n\n\n";
 
-  // cout << "\n\n\nD:\n\n\n";
-  // D.print();
 
 
   cout << "\n\n\nTranspose of A:\n\n\n";
@@ -91,11 +89,10 @@ int main(int argc, char* argv[]){
   cout << "\n\n\nSolution:";
   solution.print();
 
-  // cout << "\n\n\n";
-  // L.print();
-  // cout << "\n\n\n";
-  // U.print();
+  cout << "\n\n\n";
+  L.print();
+  cout << "\n\n\n";
+  U.print();
 
-  // D.solve(v);
 
 }

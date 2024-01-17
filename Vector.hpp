@@ -6,24 +6,22 @@ class Vector{
 
 public:
 
-  // Constructors
-  Vector();
-  Vector(int size);
-  Vector(int size,double* content);
+  // Constructors. The first constructor creates an empty Vector. The second two create vectors
+  Vector(); //creates an empty Vector.
+  Vector(int size); //Allocates memory for vector of 'size' elements
+  Vector(int size,double* content); //Allocates memory for vector of 'size' elements and assigns the elements of 'content' into the Vector.
 
   // Overloading operators
-  Vector operator+(Vector const otherVector);
-  Vector operator-(Vector const otherVector);
-  double operator*(Vector const otherVector);
-  double &operator[](int const index) const;
-  double &operator()(int const index) const;
+  Vector operator+(Vector const otherVector); //Vector addition
+  Vector operator-(Vector const otherVector); //Vector Subtraction
+  double operator*(Vector const otherVector); //dot-product
+  double &operator[](int const index) const; //Element access via square brackets
+  double &operator()(int const index) const; //Element access via round brackets
 
 
-  // void operator[]=(double const element);
-
-  void print();
-  double norm();
-  double get(int index);
+  void print(); //Print Vector in a bracket-format
+  double norm(); // Returns the L2-norm
+  double get(int index); // Yet another element access method
 
 private:
   int size;
